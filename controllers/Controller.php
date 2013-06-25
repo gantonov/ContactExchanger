@@ -12,6 +12,10 @@ abstract class Controller {
 		{
 			$this->init();
 		}
+		else
+		{
+			// TODO
+		}
 	}
 	
 	public function init()

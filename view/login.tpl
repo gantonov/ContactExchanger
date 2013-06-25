@@ -26,10 +26,10 @@
 			<legend>Log in</legend>
 			
 			<label for="log_in_email">Email</label>
-			<input type="text" name="email" id="log_in_email" placeholder="Email" />
+			<input type="text" name="log_in_email" id="log_in_email" placeholder="Email" />
 			
 			<label for="log_in_password">Password</label>
-			<input type="password" name="password" id="log_in_password" placeholder="Password" />
+			<input type="password" name="log_in_password" id="log_in_password" placeholder="Password" />
 
 			<input type="submit" name="log_in" id="log_in" value="Log in" class="button" />
 		</fieldset>

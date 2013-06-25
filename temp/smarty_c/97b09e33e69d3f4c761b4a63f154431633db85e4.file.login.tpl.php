@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 10:44:38
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 16:12:55
          compiled from "C:\xampp\htdocs\ContactExchanger\view\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1114751c92f6d9a4f81-95422509%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '97b09e33e69d3f4c761b4a63f154431633db85e4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\login.tpl',
-      1 => 1372149872,
+      1 => 1372169533,
       2 => 'file',
     ),
     '7c9c08ee7df1361cfd6b68dd063a9bd313272989' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\layout.tpl',
-      1 => 1372144898,
+      1 => 1372167946,
       2 => 'file',
     ),
   ),
@@ -84,10 +84,10 @@ $_smarty_tpl->tpl_vars['script']->_loop = true;
 			<legend>Log in</legend>
 			
 			<label for="log_in_email">Email</label>
-			<input type="text" name="email" id="log_in_email" placeholder="Email" />
+			<input type="text" name="log_in_email" id="log_in_email" placeholder="Email" />
 			
 			<label for="log_in_password">Password</label>
-			<input type="password" name="password" id="log_in_password" placeholder="Password" />
+			<input type="password" name="log_in_password" id="log_in_password" placeholder="Password" />
 
 			<input type="submit" name="log_in" id="log_in" value="Log in" class="button" />
 		</fieldset>

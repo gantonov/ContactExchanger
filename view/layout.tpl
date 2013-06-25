@@ -24,6 +24,7 @@
 				<li><a href="#">Contact Groups</a></li>
 				<li><a href="#">All Contacts</a></li>
 				<li><a href="#">Settings</a></li>
+				<li><a href="index.php?controller=login&logout=true">Log Out</a></li>
 			</ul>
 		</nav>
 		{/block}

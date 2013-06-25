@@ -11,6 +11,8 @@ class ContactGroupsController extends Controller
 	public function runService($servce) {
 		
 	}
+	
+	//TODO
 	public function checkAccess()
 	{
 		return true;

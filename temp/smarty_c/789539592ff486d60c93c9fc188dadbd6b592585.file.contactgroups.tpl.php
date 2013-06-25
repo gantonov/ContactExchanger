@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 15:01:25
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 16:07:24
          compiled from "C:\xampp\htdocs\ContactExchanger\view\contactgroups.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1056651c42da1620399-79584399%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7c9c08ee7df1361cfd6b68dd063a9bd313272989' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\layout.tpl',
-      1 => 1372144898,
+      1 => 1372167946,
       2 => 'file',
     ),
   ),
@@ -61,6 +61,7 @@ $_smarty_tpl->tpl_vars['script']->_loop = true;
 				<li><a href="#">Contact Groups</a></li>
 				<li><a href="#">All Contacts</a></li>
 				<li><a href="#">Settings</a></li>
+				<li><a href="index.php?controller=login&logout=true">Log Out</a></li>
 			</ul>
 		</nav>
 		

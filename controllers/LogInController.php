@@ -1,6 +1,16 @@
 <?php
 class LogInController extends Controller
 {	
+	public function init()
+	{
+		$this->loadJS();
+		if (!empty($_GET['logout']))
+		{
+			User::LogOut();
+		}
+		$this->display();
+	}
+	
 	public function display()
 	{
 		global $smarty;
@@ -23,6 +33,18 @@ class LogInController extends Controller
 			else
 				echo "fail";
 		}
+		if ($_GET['service'] == 'log_in')
+		{
+			$user = new User();
+			$user->set('email', $_POST['email']);
+			$user->set('password', $_POST['password']);
+			if ($user_id = $user->logIn())
+			{
+				echo "success";
+			}
+			else
+				echo "fail";
+		}
 	}
 	public function checkAccess()
 	{
@@ -32,6 +54,7 @@ class LogInController extends Controller
 	protected function loadJS()
 	{
 		$this->sctipts[] ="js/signup.js";
+		$this->sctipts[] ="js/login.js";
 		parent::loadJS();
 	}
 }
