@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 16:07:24
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 20:16:17
          compiled from "C:\xampp\htdocs\ContactExchanger\view\contactgroups.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1056651c42da1620399-79584399%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '789539592ff486d60c93c9fc188dadbd6b592585' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\contactgroups.tpl',
-      1 => 1372165280,
+      1 => 1372183976,
       2 => 'file',
     ),
     '7c9c08ee7df1361cfd6b68dd063a9bd313272989' => 
@@ -72,11 +72,20 @@ $_smarty_tpl->tpl_vars['script']->_loop = true;
 		</hgroup>
 		
 <section id="page">
-	<article>
-		<p>User id: <?php echo $_smarty_tpl->tpl_vars['test']->value;?>
-</p>
-	</article>
+	<button id="add_group_btn" class="button">Add Group</button>
 </section>
+<div class="popup_background">
+	<section id="add_group_popup" class="popup hidden">
+		<form>
+			<fieldset>
+				<legend>Add new group</legend>
+				<label for="group_name">Group name</label>
+				<input type="text" name="group_name" id="group_name" />
+				<input type="submit" name="add_group" id="add_group" value="Add" class="button"/>
+			</fieldset>
+		</form>
+	</section>
+</div>
 
 		<footer id="bottom">
 			Developed by: Georgi Antonov, 

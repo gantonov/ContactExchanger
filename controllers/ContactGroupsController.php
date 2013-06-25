@@ -4,23 +4,33 @@ class ContactGroupsController extends Controller
 	public function display()
 	{
 		global $smarty;
-		$smarty->assign('test',$_SESSION['user_id']);
 		$smarty->display('contactgroups.tpl');
 	}
 	
 	public function runService($servce) {
+		parent::runService($servce);
+		if ($_GET['service'] == 'add_group')
+		{
+			$group = new ContactGroup();
+			$group->set('name',$_POST['group_name']);
+			if ($group_id = $group->save())
+			{
+				echo "success";
+			}
+			else
+				echo "fail";
+		}
 		
 	}
 	
-	//TODO
 	public function checkAccess()
 	{
-		return true;
+		return !empty($_SESSION['user_id']);
 	}
 	
 	protected function loadJS()
 	{
-		/* TODO $this->sctipts[] ="js/.......js";*/
+		$this->sctipts[] ="js/addContacGroup.js";
 		parent::loadJS();
 	}
 }

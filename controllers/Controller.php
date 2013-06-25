@@ -14,7 +14,8 @@ abstract class Controller {
 		}
 		else
 		{
-			// TODO
+			header("Location: index.php?controller=login"); 
+			exit();
 		}
 	}
 	

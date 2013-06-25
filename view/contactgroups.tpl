@@ -5,8 +5,18 @@
 {/block}
 {block name=content}
 <section id="page">
-	<article>
-		<p>User id: {$test}</p>
-	</article>
+	<button id="add_group_btn" class="button">Add Group</button>
 </section>
+<div class="popup_background">
+	<section id="add_group_popup" class="popup hidden">
+		<form>
+			<fieldset>
+				<legend>Add new group</legend>
+				<label for="group_name">Group name</label>
+				<input type="text" name="group_name" id="group_name" />
+				<input type="submit" name="add_group" id="add_group" value="Add" class="button"/>
+			</fieldset>
+		</form>
+	</section>
+</div>
 {/block}

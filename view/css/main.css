@@ -118,14 +118,26 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 	}
 	#bottom *{ color: #C0C0C0 }
 	
+	.popup_background{
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		display: none;
+		cursor: pointer;
+	}
 	.popup{
 		background-color: #FAFAFA;
 		border-radius: 10px 10px 10px 10px;
 		box-shadow: 1px 1px 10px 8px #999999;
 		color: #464646;
-		margin: 15px auto;
+		margin: 200px auto 0;
 		padding: 10px;
 		text-shadow: 1px 1px 3px #C7D8E3;
+		top: 215px;
+		width: 222px;
+		cursor: default;
 	}
 	.popup fieldset{ border: none }
 	.popup legend{
@@ -136,6 +148,8 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 	#login{
 		margin-top: 100px;
 		min-height: 200px;
+		position: relative;
+		top: 0;
 		width: 525px;
 	}
 	#login fieldset{
