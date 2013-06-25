@@ -11,9 +11,13 @@ class ContactGroupsController extends Controller
 		parent::runService($servce);
 		if ($_GET['service'] == 'add_group')
 		{
+			$shareings = array(
+				array('id_user' => $_SESSION['user_id'],
+					'premissions' => CAN_ADD | CAN_EDIT | CAN_DELETE | CAN_SEE_OTHERS | CAN_SHARE));
 			$group = new ContactGroup();
 			$group->set('name',$_POST['group_name']);
-			if ($group_id = $group->save())
+			$group->set('shareings', $shareings);
+			if ($group->save())
 			{
 				echo "success";
 			}
