@@ -29,5 +29,7 @@ abstract class Controller {
 		global $smarty;
 		$smarty->assign("scripts",$this->sctipts);
 	}
+	
+	public function runService($servce) {}
 }
 

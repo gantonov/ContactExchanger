@@ -6,7 +6,7 @@
 {block name=content}
 <section id="page">
 	<article>
-		<p>test</p>
+		<p>User id: {$test}</p>
 	</article>
 </section>
 {/block}

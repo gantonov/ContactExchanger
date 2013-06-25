@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-21 12:56:23
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 15:01:25
          compiled from "C:\xampp\htdocs\ContactExchanger\view\contactgroups.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1056651c42da1620399-79584399%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '789539592ff486d60c93c9fc188dadbd6b592585' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\contactgroups.tpl',
-      1 => 1371812050,
+      1 => 1372165280,
       2 => 'file',
     ),
     '7c9c08ee7df1361cfd6b68dd063a9bd313272989' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\layout.tpl',
-      1 => 1371812179,
+      1 => 1372144898,
       2 => 'file',
     ),
   ),
@@ -23,6 +23,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_51c42da1626a59_05732642',
+  'variables' => 
+  array (
+    'scripts' => 0,
+    'script' => 0,
+  ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_51c42da1626a59_05732642')) {function content_51c42da1626a59_05732642($_smarty_tpl) {?><!DOCTYPE html>
@@ -31,7 +36,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<title>Contact Groups</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel=stylesheet type="text/css" href="view/css/main.css" />
-		
+		<?php if (isset($_smarty_tpl->tpl_vars['scripts']->value)){?>
+			<?php  $_smarty_tpl->tpl_vars['script'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['script']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['scripts']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['script']->key => $_smarty_tpl->tpl_vars['script']->value){
+$_smarty_tpl->tpl_vars['script']->_loop = true;
+?>
+				<script src="<?php echo $_smarty_tpl->tpl_vars['script']->value;?>
+"></script> 
+			<?php } ?>
+		<?php }?>
 	</head>
 	<body>
 		<header id="top" class="top">
@@ -58,7 +72,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		
 <section id="page">
 	<article>
-		<p>test</p>
+		<p>User id: <?php echo $_smarty_tpl->tpl_vars['test']->value;?>
+</p>
 	</article>
 </section>
 

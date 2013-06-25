@@ -14,8 +14,8 @@ $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."user
 	id_user int NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (id_user),
 	name varchar(30) NOT NULL,
-	email varchar(50) NOT NULL,
-	password varchar(32) NOT NULL
+	email varchar(50) NOT NULL UNIQUE,
+	password varchar(40) NOT NULL
 ) ENGINE=InnoDB
 ";
 

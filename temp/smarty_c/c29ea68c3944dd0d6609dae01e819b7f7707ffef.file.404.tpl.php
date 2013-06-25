@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 07:16:21
+<?php /* Smarty version Smarty-3.1.13, created on 2013-06-25 10:35:33
          compiled from "C:\xampp\htdocs\ContactExchanger\view\404.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1095251c42fe341eb50-14920479%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7c9c08ee7df1361cfd6b68dd063a9bd313272989' => 
     array (
       0 => 'C:\\xampp\\htdocs\\ContactExchanger\\view\\layout.tpl',
-      1 => 1371812179,
+      1 => 1372144898,
       2 => 'file',
     ),
   ),
@@ -23,6 +23,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_51c42fe356c8f5_73179969',
+  'variables' => 
+  array (
+    'scripts' => 0,
+    'script' => 0,
+  ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_51c42fe356c8f5_73179969')) {function content_51c42fe356c8f5_73179969($_smarty_tpl) {?><!DOCTYPE html>
@@ -31,7 +36,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<title>404 Page Not Found</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel=stylesheet type="text/css" href="view/css/main.css" />
-		
+		<?php if (isset($_smarty_tpl->tpl_vars['scripts']->value)){?>
+			<?php  $_smarty_tpl->tpl_vars['script'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['script']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['scripts']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['script']->key => $_smarty_tpl->tpl_vars['script']->value){
+$_smarty_tpl->tpl_vars['script']->_loop = true;
+?>
+				<script src="<?php echo $_smarty_tpl->tpl_vars['script']->value;?>
+"></script> 
+			<?php } ?>
+		<?php }?>
 	</head>
 	<body>
 		<header id="top" class="top">

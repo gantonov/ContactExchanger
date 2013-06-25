@@ -21,6 +21,13 @@ class Dispatcher{
 		
 		require(_CONTROLLERS_DIR_ . $controller . '.php');
 		$controller = new $controller();
-		$controller->run();
+		if (empty($_GET['service']))
+		{
+			$controller->run();
+		}
+		else
+		{
+			$controller->runService($_GET['service']);
+		}
 	}
 }
