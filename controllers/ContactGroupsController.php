@@ -4,6 +4,8 @@ class ContactGroupsController extends Controller
 	public function display()
 	{
 		global $smarty;
+		$user = new User($_SESSION['user_id']);
+		$smarty->assign('contact_groups',$user->contact_groups);
 		$smarty->display('contactgroups.tpl');
 	}
 	
