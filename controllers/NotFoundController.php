@@ -1,6 +1,12 @@
 <?php
 class NotFoundController extends Controller
 {
+	public function __construct() 
+	{
+		header("HTTP/1.0 404 Not Found");
+		parent::__construct();
+	}
+	
 	public function display()
 	{
 		global $smarty;
