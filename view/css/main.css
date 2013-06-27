@@ -40,11 +40,13 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		box-shadow: 1px 1px 2px #E8F0F2 inset;
 		display: block;
 		font-size: 1em;
+		margin-bottom: 1ex;
 		padding: 5px 10px;
 		width: 200px;
 	}
 	input[type="submit"]{float: right }
 	label{
+		clear: left;
 		display: block;
 		font-weight: bold;
 		margin-top: 1ex;
@@ -107,6 +109,7 @@ header, nav, article, section, footer, hgroup, aside { display: block }
         border-radius: 10px;
         margin: 15px auto;
         min-height: 400px;
+		overflow: hidden;
         width: 980px;
         box-shadow:1px 1px 10px #c0c0c0;
 	}
@@ -153,15 +156,18 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		width: 525px;
 	}
 	#login fieldset{
+		background-color: transparent;
 		float: left;
+		margin: 0;
 		padding: 0 20px;
 		width: 222px;
 	}
 	#login fieldset#signup{ border-right: 1px dotted #ccc }
-	table{
+	table, fieldset{
 		width: 100%; 
 		background-color: #e8eff2;
 		margin:15px 0;
+		border: none;
 	}
 	tbody tr:nth-child(odd){background-color: #f5f8f9}
 	td{padding: 0 1em}
@@ -169,6 +175,21 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		width: 40px;
 		text-align: center;
 		padding: 0;
+	}
+	
+	fieldset{
+		padding: 2em;
+	}
+	input.left_field{
+		border-radius: 4px 0 0 4px;
+		border-right: medium none;
+		clear: left;
+		float: left;
+	}
+	input.right_field{
+		border-left: medium none;
+		border-radius: 0 4px 4px 0;
+		float: left;
 	}
 	.icon{
 		display: block;
