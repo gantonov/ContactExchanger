@@ -38,47 +38,56 @@ class Contact extends ObjectModel{
 		}
 		
 		//insert phone numbers
-		$query = "INSERT INTO "._DB_PREFIX_."phone_number
-			(id_contact, type, number, preferable) VALUES";
-		foreach ($this->telephones as $telephone) 
+		if (!empty($this->telephones))
 		{
-			$query .= "($this->id, '{$telephone['type']}', '{$telephone['number']}', {$telephone['preferable']}), ";
-		}
-		$query = substr($query,0,-2); //remove ", "
-		if (!$db->executeInsertQuery($query))
-		{
-			$db->executeQuery ("ROLLBACK");
-			return false;
+			$query = "INSERT INTO "._DB_PREFIX_."phone_number
+				(id_contact, type, number, preferable) VALUES";
+			foreach ($this->telephones as $telephone) 
+			{
+				$query .= "($this->id, '{$telephone['type']}', '{$telephone['number']}', {$telephone['preferable']}), ";
+			}
+			$query = substr($query,0,-2); //remove ", "
+			if (!$db->executeInsertQuery($query))
+			{
+				$db->executeQuery ("ROLLBACK");
+				return false;
+			}
 		}
 		
 		//insert emails
-		$query = "INSERT INTO "._DB_PREFIX_."email
-			(id_contact, type, email, preferable) VALUES";
-		foreach ($this->emails as $email) 
+		if (!empty($this->emails))
 		{
-			echo mysql_error();
-			$query .= "($this->id, '{$email['type']}', '{$email['email']}', {$email['preferable']}), ";
-		}
-		$query = substr($query,0,-2); //remove ", "
-		if (!$db->executeInsertQuery($query))
-		{
-			$db->executeQuery ("ROLLBACK");
-			return false;
+			$query = "INSERT INTO "._DB_PREFIX_."email
+				(id_contact, type, email, preferable) VALUES";
+			foreach ($this->emails as $email) 
+			{
+				echo mysql_error();
+				$query .= "($this->id, '{$email['type']}', '{$email['email']}', {$email['preferable']}), ";
+			}
+			$query = substr($query,0,-2); //remove ", "
+			if (!$db->executeInsertQuery($query))
+			{
+				$db->executeQuery ("ROLLBACK");
+				return false;
+			}
 		}
 		
 		//insert ims
-		$query = "INSERT INTO "._DB_PREFIX_."im
-			(id_contact, type, value) VALUES";
-		foreach ($this->ims as $im) 
+		if (!empty($this->ims))
 		{
-			$query .= " ($this->id, '{$im['type']}', '{$im['username']}'), ";
-		}
-		$query = substr($query,0,-2); //remove ", "
-		if (!$db->executeInsertQuery($query))
-		{
-			echo mysql_error();
-			$db->executeQuery ("ROLLBACK");
-			return false;
+			$query = "INSERT INTO "._DB_PREFIX_."im
+				(id_contact, type, value) VALUES";
+			foreach ($this->ims as $im) 
+			{
+				$query .= " ($this->id, '{$im['type']}', '{$im['username']}'), ";
+			}
+			$query = substr($query,0,-2); //remove ", "
+			if (!$db->executeInsertQuery($query))
+			{
+				echo mysql_error();
+				$db->executeQuery ("ROLLBACK");
+				return false;
+			}
 		}
 		
 		$db->executeQuery("COMMIT");
