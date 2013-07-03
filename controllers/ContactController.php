@@ -3,9 +3,25 @@ class ContactController extends Controller
 {	
 	public function display()
 	{
-		$user = new User($_SESSION['user_id']);
 		global $smarty;
-		$smarty->assign('contact_groups',$user->contact_groups);		
+			
+		$id_contact = (empty($_GET['id'])?null:$_GET['id']);
+		$contact = new Contact($id_contact);
+		$smarty->assign('id',$contact->id);
+		$smarty->assign('first_name',$contact->first_name);
+		$smarty->assign('last_name',$contact->last_name);
+		$smarty->assign('telephones',$contact->telephones);
+		$smarty->assign('emails',$contact->emails);
+		$smarty->assign('ims',$contact->ims);
+		
+		$user = new User($_SESSION['user_id']);
+		
+		foreach ($contact->contact_groups as $id_group) 
+		{
+			$user->contact_groups[$id_group]['selected'] = true;
+		}
+		$smarty->assign('contact_groups',$user->contact_groups);	
+		
 		$smarty->display('contact.tpl');
 	}
 	

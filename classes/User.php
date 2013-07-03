@@ -20,7 +20,7 @@ class User extends ObjectModel{
 			{
 				$contact_group = array('id' => $row['id_contact_group'], 'name' => $row['name'], 
 					'permissions' => ContactGroup::getPermissions($row['permissions']));
-				$this->contact_groups[] = $contact_group;
+				$this->contact_groups[$row['id_contact_group']] = $contact_group;
 			}
 		}
 	}

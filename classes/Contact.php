@@ -1,24 +1,65 @@
 <?php
 class Contact extends ObjectModel{
-	protected $id;
-	protected $first_name;
-	protected $last_name;
-	protected $telephones;
-	protected $emails;
-	protected $ims;
-	protected $contact_groups;
+	public $id;
+	public $first_name;
+	public $last_name;
+	public $telephones;
+	public $emails;
+	public $ims;
+	public $contact_groups;
 	
 	public function __construct($id = null)
 	{
-		$this->contact_groups = array();
 		if (!empty($id))
+			$this->set ('id', $id);
+		$this->contact_groups = array();
+		
+		if (!empty($this->id))
 		{
-			$query = "";
-			$result = DBComutator::getInstance()->executeQuery($query);
+			$db = new DBComutator;
+			
+			$query = "SELECT * FROM "._DB_PREFIX_."contact WHERE id_contact =$this->id";
+			$result = $db->executeQuery($query);
+			if ($row = mysql_fetch_assoc($result))
+			{
+				$this->id = $row['id_contact'];
+				$this->first_name = $row['first_name'];
+				$this->last_name = $row['last_name'];
+			}
+			
+			$this->telephones = array();
+			$query = "SELECT * FROM "._DB_PREFIX_."phone_number WHERE id_contact=$this->id";
+			$result = $db->executeQuery($query);
 			while ($row = mysql_fetch_assoc($result))
 			{
-				;
+				$this->telephones[] = $row;
 			}
+			
+			$this->emails = array();
+			$query = "SELECT * FROM "._DB_PREFIX_."email WHERE id_contact=$this->id";
+			$result = $db->executeQuery($query);
+			while ($row = mysql_fetch_assoc($result))
+			{
+				$this->emails[] = $row;
+			}
+			
+			$this->ims = array();
+			$query = "SELECT * FROM "._DB_PREFIX_."im WHERE id_contact=$this->id";
+			$result = $db->executeQuery($query);
+			while ($row = mysql_fetch_assoc($result))
+			{
+				$this->ims[] = $row;
+			}
+			
+			$this->contact_groups = array();
+			$query = "SELECT * FROM "._DB_PREFIX_."contact_in_group WHERE id_contact=$this->id";
+			$result = $db->executeQuery($query);
+			while ($row = mysql_fetch_assoc($result))
+			{
+				$this->contact_groups[] = $row['id_contact_group'];
+			}
+			
+			unset($db);
 		}
 	}
 	
@@ -33,7 +74,6 @@ class Contact extends ObjectModel{
 		if (!$this->id = $db->executeInsertQuery($query))
 		{
 			$db->executeQuery ("ROLLBACK");
-			echo "000";
 			return false;
 		}
 		
