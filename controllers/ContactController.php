@@ -64,6 +64,17 @@ class ContactController extends Controller
 				$i++;
 			}
 			$contact->set('ims', $contact_ims);
+			
+			if (!empty($contact_data['contact_groups']))
+			{
+				$contact_groups = array();
+				foreach ($contact_data['contact_groups'] as $id_contact_group) 
+				{
+					$id_contact_group = mysql_real_escape_string($id_contact_group);
+					$contact_groups[] =  array('id_contact_group' => $id_contact_group);
+				}
+				$contact->set('contact_groups', $contact_groups);
+			}
 			if ($contact->save())
 				echo "success";
 			

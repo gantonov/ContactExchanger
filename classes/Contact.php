@@ -84,7 +84,29 @@ class Contact extends ObjectModel{
 			$query = substr($query,0,-2); //remove ", "
 			if (!$db->executeInsertQuery($query))
 			{
-				echo mysql_error();
+				$db->executeQuery ("ROLLBACK");
+				return false;
+			}
+		}
+		
+		//insert contact groups
+		if (empty($this->contact_groups))
+		{
+			echo "empty";
+			$db->executeQuery ("ROLLBACK");
+			return false;
+		}
+		else
+		{
+			$query = "INSERT INTO "._DB_PREFIX_."contact_in_group
+				(id_contact, id_contact_group) VALUES";
+			foreach ($this->contact_groups as $contact_group) 
+			{
+				$query .= " ($this->id, {$contact_group['id_contact_group']}), ";
+			}
+			$query = substr($query,0,-2); //remove ", "
+			if (!$db->executeQuery($query))
+			{
 				$db->executeQuery ("ROLLBACK");
 				return false;
 			}
