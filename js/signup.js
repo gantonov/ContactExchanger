@@ -15,7 +15,7 @@ $(document).ready(function(){
 		{
 			signUpInfo.password = password1;
 			
-			$.post("http://localhost/ContactExchanger/?controller=login&service=sign_up", signUpInfo,
+			$.post(base_url + "?controller=login&service=sign_up", signUpInfo,
 				function(data) {
 					if (data == "success")
 					{

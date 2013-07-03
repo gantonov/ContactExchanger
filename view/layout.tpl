@@ -4,6 +4,7 @@
 		<title>{block name=title}Contact Exchanger{/block}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel=stylesheet type="text/css" href="view/css/main.css" />
+		<script> base_url = '{$base_url}'; </script>
 		{if isset($scripts)}
 			{foreach  $scripts as $script}
 				<script src="{$script}"></script> 

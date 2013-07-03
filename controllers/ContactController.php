@@ -65,7 +65,8 @@ class ContactController extends Controller
 			}
 			$contact->set('ims', $contact_ims);
 			if ($contact->save())
-				echo "Bravo";
+				echo "success";
+			
 		}
 		if ($_GET['service'] == 'update')
 		{

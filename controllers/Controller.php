@@ -22,6 +22,9 @@ abstract class Controller {
 	public function init()
 	{
 		$this->loadJS();
+		
+		global $smarty;
+		$smarty->assign('base_url',_ROOT_URL_);
 		$this->display();
 	}
 	

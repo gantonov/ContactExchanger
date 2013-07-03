@@ -10,6 +10,8 @@ define('_DB_PASSWORD_','');
 define('_DB_','contact-exchanger');
 define('_DB_PREFIX_','ce_');
 
+define('_ROOT_URL_','http://localhost/ContactExchanger/');
+
 /* PERMISSION FLAGS */
 define('CAN_ADD',1);
 define('CAN_EDIT',2);

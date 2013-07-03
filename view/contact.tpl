@@ -35,7 +35,6 @@
 				<label for="im_type">IM</label>
 				<input class="left_field" type="text" name="im_type[]" id="im_type" placeholder="Type (Skype/Yahoo)" />
 				<input class="right_field" type="text" name="im[]" id="im" placeholder="Username" />
-				<input type="radio" name="default_im" value="1" class="default_radio"/>
 				<input type="button" id="add_im" value="Add new" class="button add_contact_feature"/>
 			</div>
 		</fieldset>

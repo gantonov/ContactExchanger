@@ -19,7 +19,7 @@ $(document).ready(function(){
 		var name = $('#group_name').val();
 		if (name != '')
 		{
-			$.post("http://localhost/ContactExchanger/index.php?controller=ContactGroups&service=add_group", {'group_name':name},
+			$.post(base_url + "?controller=ContactGroups&service=add_group", {'group_name':name},
 				function(data) {
 					if (data == "success")
 					{
