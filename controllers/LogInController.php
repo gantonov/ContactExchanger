@@ -3,12 +3,11 @@ class LogInController extends Controller
 {	
 	public function init()
 	{
-		$this->loadJS();
 		if (!empty($_GET['logout']))
 		{
 			User::LogOut();
 		}
-		$this->display();
+		parent::init();
 	}
 	
 	public function display()
