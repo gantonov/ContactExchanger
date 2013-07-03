@@ -40,11 +40,15 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		box-shadow: 1px 1px 2px #E8F0F2 inset;
 		display: block;
 		font-size: 1em;
+		height: 18px;
 		margin-bottom: 1ex;
 		padding: 5px 10px;
 		width: 200px;
 	}
-	input[type="submit"]{float: right }
+	input[type="submit"]{
+		float: right;
+		margin:25px;
+	}
 	label{
 		clear: left;
 		display: block;
@@ -163,7 +167,7 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		width: 222px;
 	}
 	#login fieldset#signup{ border-right: 1px dotted #ccc }
-	table, fieldset{
+	#page table, #page fieldset{
 		width: 100%; 
 		background-color: #e8eff2;
 		margin:15px 0;
@@ -177,8 +181,18 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		padding: 0;
 	}
 	
-	fieldset{
-		padding: 2em;
+	#page fieldset{
+		padding: 25px;
+	}
+	#page fieldset legend{
+		border-bottom: 1px dotted #FFFFFF;
+		display: block;
+		float: left;
+		font-size: 1.5em;
+		font-weight: bold;
+		margin: -20px 0 13px -25px;
+		padding-left: 25px;
+		width: 100%;
 	}
 	input.left_field{
 		border-radius: 4px 0 0 4px;
@@ -190,6 +204,17 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		border-left: medium none;
 		border-radius: 0 4px 4px 0;
 		float: left;
+	}
+	
+	input.default_radio { 
+		float: left;
+		margin: 8px;
+	}
+	input.add_contact_feature { 
+		clear: left;
+		float: left;
+		margin-left: 0;
+		margin-top: 0;
 	}
 	.icon{
 		display: block;
@@ -204,6 +229,10 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 	.share{background-image: url('../img/network share.png')}
 	.delete{background-image: url('../img/bin closed.png')}
 	.forbidden{background-image: url('../img/lock.png')}
+	
+	ul#contact_groups { list-style: none }
+	ul#contact_groups input[type="checkbox"],
+	ul#contact_groups label { display:inline }
 }
 @media print
 {
