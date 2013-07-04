@@ -14,7 +14,7 @@
 	<body>
 		<header id="top" class="top">
 			<div class="center">
-				<a href="#" title="Contact Exchanger">
+				<a href="index.php" title="Contact Exchanger">
 					<img id="logo" src="view/img/logo.png" alt="Contact Exchanger" />
 				</a>
 			</div>
@@ -22,10 +22,8 @@
 		{block name=navigation}
 		<nav id="main_nav">
 			<ul>
-				<li><a href="#">Contact Groups</a></li>
-				<li><a href="#">All Contacts</a></li>
-				<li><a href="#">Settings</a></li>
 				<li><a href="index.php?controller=login&logout=true">Log Out</a></li>
+				<li><a href="index.php">Contact Groups</a></li>
 			</ul>
 		</nav>
 		{/block}

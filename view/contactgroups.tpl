@@ -23,19 +23,19 @@
 			<tr>
 				<td class="small">{$contact_group.id}</td>
 				<td>
-					<a href="index.php?controller=Group&group_id={$contact_group.id}">{$contact_group.name}</a>
+					<a href="index.php?controller=ContactGroup&group_id={$contact_group.id}">{$contact_group.name}</a>
 				</td>
 				<td class="small">{$contact_group.permissions.flags}</td>
 				<td class="small">
 					{if $contact_group.permissions.add}
-						<a href="index.php?controller=Contact&group_id={$contact_group.id}"" class="icon add_contact">Add</a>
+						<a href="index.php?controller=Contact&group_id={$contact_group.id}" class="icon add_contact">Add</a>
 					{else}
 						<div class="icon forbidden">Forbidden</div>
 					{/if}
 				</td>
 				<td class="small">
 					{if $contact_group.permissions.edit}
-						<a href="index.php?controller=Group&group_id={$contact_group.id}" class="icon edit">Edit</a>
+						<a href="index.php?controller=ContactGroup&group_id={$contact_group.id}" class="icon edit">Edit</a>
 					{else}
 						<div class="icon forbidden">Forbidden</div>
 					{/if}

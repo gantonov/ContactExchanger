@@ -174,4 +174,18 @@ class Contact extends ObjectModel{
 		$db->executeQuery("COMMIT");
 		return true;
 	}
+	
+	public static function deleteContact($id_contact)
+	{
+		$id_contact = mysql_real_escape_string($id_contact);
+		$query = "DELETE FROM "._DB_PREFIX_."contact 
+			WHERE id_contact = $id_contact";
+		$res = DBComutator::getInstance()->executeQuery($query);
+
+		if (!$res)
+			return false;
+		
+		return true;
+		
+	}
 }

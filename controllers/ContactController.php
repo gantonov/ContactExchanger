@@ -96,7 +96,21 @@ class ContactController extends Controller
 			}
 			if ($contact->save())
 				echo "success";
-		}		
+		}
+		
+		if ($servce == 'delete')
+		{
+			if (empty($_GET['contact_id']))
+			{
+				echo "No contact id!";
+				return;
+			}
+			
+			if (Contact::deleteContact($_GET['contact_id']))
+				echo "success";
+			else
+				echo "fail";
+		}
 	}
 	
 	//TODO

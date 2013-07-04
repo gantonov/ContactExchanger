@@ -33,6 +33,12 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		box-sizing:border-box;
 		-moz-box-sizing:border-box;
 	}
+	.button.disabled { 
+		background: url("../img/lock.png") no-repeat scroll 4px center #65C2E9;
+		color: #6CA8C2;
+		cursor: default;
+		padding-left: 30px;
+	}
 	input[type="text"], input[type="password"]{
 		background-color: #FFFFFF;
 		border: 1px solid #E1E1E1;

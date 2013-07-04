@@ -1,16 +1,40 @@
 <?php
 class ContactGroup extends ObjectModel{
-	protected $id;
-	protected $name;
-	protected $users;
-	protected $shareings;
+	public $id;
+	public $name;
+	public $contacts;
+	public $shareings;
+	public $user_permissions;
 	
 	public function __construct($id = null)
 	{
-		//TODO
 		if (!empty($id))
+			$this->set ('id', $id);
+		$this->contact_groups = array();
+		
+		if (!empty($this->id))
 		{
+			$db = new DBComutator;
 			
+			$query = "SELECT * FROM "._DB_PREFIX_."contact_group WHERE id_contact_group=$this->id";
+			$result = $db->executeQuery($query);
+			if ($row = mysql_fetch_assoc($result))
+			{
+				$this->id = $row['id_contact_group'];
+				$this->name = $row['name'];
+			}
+			
+			$this->contacts = array();
+			$query = "SELECT c.* FROM "._DB_PREFIX_."contact_in_group AS cg 
+					LEFT JOIN "._DB_PREFIX_."contact AS c ON cg.id_contact = c.id_contact
+					WHERE id_contact_group=$this->id";
+			$result = $db->executeQuery($query);
+			while ($row = mysql_fetch_assoc($result))
+				$this->contacts[] = array('id' => $row['id_contact'], 
+					'first_name' => $row['first_name'], 
+					'last_name' => $row['last_name']);
+			unset($db);
+			$this->user_permissions = self::getGroupPermissions($this->id, $_SESSION['user_id']);
 		}
 	}
 	
@@ -49,12 +73,9 @@ class ContactGroup extends ObjectModel{
 		$res = DBComutator::getInstance()->executeQuery($query);
 
 		if (!$res)
-		{
 			return false;
-		}
 		
-		return true;
-		
+		return true;	
 	}
 	public static function getGroupPermissions($id_group, $id_user)
 	{
