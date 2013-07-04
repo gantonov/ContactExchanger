@@ -15,7 +15,7 @@ $(document).ready(function(){
 		{
 			signUpInfo.password = password1;
 			
-			$.post(base_url + "?controller=login&service=sign_up", signUpInfo,
+			$.post(base_url + "?controller=LogIn&service=sign_up", signUpInfo,
 				function(data) {
 					if (data == "success")
 					{
@@ -23,7 +23,7 @@ $(document).ready(function(){
 					}
 					else
 					{
-						alert ("error");
+						alert (data);
 					}
 				}
 			);

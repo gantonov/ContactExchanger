@@ -7,7 +7,7 @@ if (!$con)
 }
 else echo "login successful <br>";
 
-mysql_select_db(_DB_, $con);
+mysql_select_db(_DB_, $con) or die(mysql_error());
 
 $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."user
 (

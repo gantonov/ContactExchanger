@@ -22,7 +22,7 @@
 		{block name=navigation}
 		<nav id="main_nav">
 			<ul>
-				<li><a href="index.php?controller=login&logout=true">Log Out</a></li>
+				<li><a href="index.php?controller=LogIn&logout=true">Log Out</a></li>
 				<li><a href="index.php">Contact Groups</a></li>
 			</ul>
 		</nav>

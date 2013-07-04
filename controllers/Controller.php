@@ -16,7 +16,7 @@ abstract class Controller {
 		}
 		else
 		{
-			header("Location: index.php?controller=login"); 
+			header("Location: index.php?controller=LogIn"); 
 			exit();
 		}
 	}

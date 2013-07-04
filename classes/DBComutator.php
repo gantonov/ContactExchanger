@@ -29,10 +29,9 @@ class DBComutator {
 	 */
 	public function __destruct() 
 	{
-		if (mysql_close(self::$connection))
-		{
+		if (!self::$connection)
+			if (mysql_close(self::$connection))
 			self::$connection = null;
-		}
 	}    
     
     public static function getConnection()

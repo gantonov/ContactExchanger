@@ -18,7 +18,7 @@ function autoload($class)
 		require_once(_CONTROLLERS_DIR_ . $class . '.php');
 	}
 }
-
+$dbComutator = new DBComutator();
 require_once(SMARTY_DIR . 'Smarty.class.php');
 $smarty = new Smarty();
 $smarty->setTemplateDir(_ROOT_DIR_.'view/');
