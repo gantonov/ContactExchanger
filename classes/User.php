@@ -5,6 +5,10 @@ class User extends ObjectModel{
 	protected $password;
 	public $contact_groups;
 	
+	/**
+	 * Extracts the required user group from the DB
+	 * @param int $id user id
+	 */
 	public function __construct($id = null)
 	{
 		$this->contact_groups = array();
@@ -25,6 +29,10 @@ class User extends ObjectModel{
 		}
 	}
 	
+	/**
+	 * Saves the user to the DB
+	 * @return int user id 
+	 */
 	public function save()
 	{
 		$query = "INSERT INTO "._DB_PREFIX_."user

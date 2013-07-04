@@ -1,4 +1,7 @@
 <?php
+/*
+ * Loads all necessary files. 
+ */
 session_start();
 
 require 'globals.php';

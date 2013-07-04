@@ -1,7 +1,15 @@
 <?php
+/**
+ * DBComutator is used to establish DB connection and execute queries
+ */
 class DBComutator {
+	/**
+	 * Holds the active DB connection 
+	 */
 	private static $connection;
-	
+	/**
+	 * Establishes a connection if $connection is empty. 
+	 */
 	public function __construct() {
 		
 		if(empty(self::$connection))
@@ -16,6 +24,9 @@ class DBComutator {
 		}
 	}
 	
+	/**
+	 * Closes the current DB connection 
+	 */
 	public function __destruct() 
 	{
 		if (mysql_close(self::$connection))
@@ -33,6 +44,12 @@ class DBComutator {
 	{
 		return new DBComutator();
 	}
+	/**
+	 * Executes a query. For INSER queries use executeInsertQuery()
+	 * @param string $query
+	 * @return resourece 
+	 * @see executeInsertQuery()
+	 */
     public function executeQuery($query)
     {
         if ($result = mysql_query($query,self::$connection)) 
@@ -45,6 +62,11 @@ class DBComutator {
             return false;
         }
     }
+	/**
+	 * Executes an INSERT query.
+	 * @param string $query INSERT query
+	 * @return int|false mysql_insert_id()
+	 */
 	public function executeInsertQuery($query)
     {
         if (mysql_query($query,self::$connection)) 

@@ -6,6 +6,10 @@ class ContactGroup extends ObjectModel{
 	public $shareings;
 	public $user_permissions;
 	
+	/**
+	 * Extracts the required contact group from the DB
+	 * @param int $id Contact group id
+	 */
 	public function __construct($id = null)
 	{
 		if (!empty($id))
@@ -38,6 +42,10 @@ class ContactGroup extends ObjectModel{
 		}
 	}
 	
+	/**
+	 * Saves the contact group to the DB
+	 * @return boolean
+	 */
 	public function save()
 	{
 		$query = "INSERT INTO "._DB_PREFIX_."contact_group
@@ -65,6 +73,11 @@ class ContactGroup extends ObjectModel{
 		$db->executeQuery("COMMIT");
 		return true;
 	}
+	/**
+	 * Deletes a contact group
+	 * @param int $id_group
+	 * @return boolean 
+	 */
 	public static function deleteContactGroup($id_group)
 	{
 		$id_group = mysql_real_escape_string($id_group);
@@ -77,6 +90,12 @@ class ContactGroup extends ObjectModel{
 		
 		return true;	
 	}
+	/**
+	 * Returns an array of the user permissions
+	 * @param int $id_group
+	 * @param int $id_user
+	 * @return array|false an array of user permissions or false
+	 */
 	public static function getGroupPermissions($id_group, $id_user)
 	{
 		$id_group = mysql_real_escape_string($id_group);
@@ -92,6 +111,12 @@ class ContactGroup extends ObjectModel{
 		
 		return self::getPermissions($row['permissions']);
 	}
+	
+	/**
+	 * Converts user permission flags to an array
+	 * @param int $permissions_flags
+	 * @return array an array of user permissions
+	 */
 	public static function getPermissions($permissions_flags)
 	{
 		$permissions = array();

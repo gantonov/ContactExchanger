@@ -8,6 +8,10 @@ class Contact extends ObjectModel{
 	public $ims;
 	public $contact_groups;
 	
+	/**
+	 * Extracts the required contact from the DB
+	 * @param int $id Contact id
+	 */
 	public function __construct($id = null)
 	{
 		if (!empty($id))
@@ -63,6 +67,10 @@ class Contact extends ObjectModel{
 		}
 	}
 	
+	/**
+	 * Saves the contact to the DB
+	 * @return boolean
+	 */
 	public function save()
 	{
 		$db = new DBComutator();
@@ -175,6 +183,11 @@ class Contact extends ObjectModel{
 		return true;
 	}
 	
+	/**
+	 * Deletes a contact
+	 * @param int $id_contact The id if the contact to be deleted
+	 * @return boolean 
+	 */
 	public static function deleteContact($id_contact)
 	{
 		$id_contact = mysql_real_escape_string($id_contact);
@@ -186,6 +199,5 @@ class Contact extends ObjectModel{
 			return false;
 		
 		return true;
-		
 	}
 }

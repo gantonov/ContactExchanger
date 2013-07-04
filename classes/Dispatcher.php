@@ -1,6 +1,13 @@
 <?php
+/**
+ * The Dispatcher is the main entrance to the application. 
+ */
 class Dispatcher{
-
+	/**
+	 * Checks the URL and finds the controller class that is requested. 
+	 * Checks permissions.
+	 * Loads the controller and runs it.
+	 */
 	public static function dispatch()
 	{
 		if (empty($_GET['controller']))

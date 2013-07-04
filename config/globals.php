@@ -12,9 +12,12 @@ define('_DB_PREFIX_','ce_');
 
 define('_ROOT_URL_','http://localhost/ContactExchanger/');
 
-/* PERMISSION FLAGS */
+/**#@+
+ *  Permissions flag 
+ */
 define('CAN_ADD',1);
 define('CAN_EDIT',2);
 define('CAN_SEE_OTHERS',4);
 define('CAN_SHARE',8);
 define('CAN_DELETE',16);
+/**#@-*/
