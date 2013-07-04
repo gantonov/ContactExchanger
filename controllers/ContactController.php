@@ -27,12 +27,13 @@ class ContactController extends Controller
 	
 	public function runService($servce) {
 		parent::runService($servce);
-		if ($_GET['service'] == 'save')
+		if ($servce == 'save')
 		{
 			parse_str($_POST['data'], $contact_data);
 			
+			$contact_id = (empty($contact_data['contact_id']))?null:$contact_data['contact_id'];
 			$contact = new Contact();
-			
+			$contact->set('id', $contact_id);
 			$contact->set('first_name', $contact_data['first_name']);
 			$contact->set('last_name', $contact_data['last_name']);
 			
@@ -93,11 +94,6 @@ class ContactController extends Controller
 			}
 			if ($contact->save())
 				echo "success";
-			
-		}
-		if ($_GET['service'] == 'update')
-		{
-			
 		}		
 	}
 	

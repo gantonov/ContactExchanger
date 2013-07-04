@@ -11,7 +11,7 @@ class ContactGroupsController extends Controller
 	
 	public function runService($servce) {
 		parent::runService($servce);
-		if ($_GET['service'] == 'add_group')
+		if ($servce == 'add_group')
 		{
 			$shareings = array(
 				array('id_user' => $_SESSION['user_id'],

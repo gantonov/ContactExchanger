@@ -18,7 +18,7 @@ class LogInController extends Controller
 	
 	public function runService($servce) {
 		parent::runService($servce);
-		if ($_GET['service'] == 'sign_up')
+		if ($servce == 'sign_up')
 		{
 			$user = new User();
 			$user->set('email', $_POST['email']);
@@ -32,7 +32,7 @@ class LogInController extends Controller
 			else
 				echo "fail";
 		}
-		if ($_GET['service'] == 'log_in')
+		if ($servce == 'log_in')
 		{
 			$user = new User();
 			$user->set('email', $_POST['email']);
