@@ -30,9 +30,9 @@ $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."contact_group
 $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."shareing
 (
 	id_user int NOT NULL,
-	FOREIGN KEY (id_user) REFERENCES "._DB_PREFIX_."user(id_user),
+	FOREIGN KEY (id_user) REFERENCES "._DB_PREFIX_."user(id_user) ON DELETE CASCADE ON UPDATE CASCADE,
 	id_contact_group int NOT NULL,
-	FOREIGN KEY (id_contact_group) REFERENCES "._DB_PREFIX_."contact_group(id_contact_group),
+	FOREIGN KEY (id_contact_group) REFERENCES "._DB_PREFIX_."contact_group(id_contact_group) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (id_user,id_contact_group),
 	permissions int(2) NOT NULL
 ) ENGINE=InnoDB
@@ -50,9 +50,9 @@ $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."contact
 $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."contact_in_group
 (
 	id_contact int,
-	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact),
+	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact) ON DELETE CASCADE ON UPDATE CASCADE,
 	id_contact_group int,
-	FOREIGN KEY (id_contact_group) REFERENCES "._DB_PREFIX_."contact_group(id_contact_group),
+	FOREIGN KEY (id_contact_group) REFERENCES "._DB_PREFIX_."contact_group(id_contact_group) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (id_contact, id_contact_group)
 ) ENGINE=InnoDB
 ";
@@ -62,7 +62,7 @@ $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."phone_number
 	id_phone_number int NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (id_phone_number),
 	id_contact int NOT NULL,
-	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact),
+	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact) ON DELETE CASCADE ON UPDATE CASCADE,
 	type varchar(20) NOT NULL,
 	number varchar(20) NOT NULL,
 	preferable BOOLEAN NOT NULL DEFAULT 0
@@ -74,7 +74,7 @@ $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."email
 	id_email int NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (id_email),
 	id_contact int NOT NULL,
-	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact),
+	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact) ON DELETE CASCADE ON UPDATE CASCADE,
 	type varchar(20) NOT NULL,
 	email varchar(30) NOT NULL,
 	preferable BOOLEAN NOT NULL DEFAULT 0
@@ -86,7 +86,7 @@ $QUERIES[] = "CREATE TABLE "._DB_PREFIX_."im
 	id_im int NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (id_im),
 	id_contact int NOT NULL,
-	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact),
+	FOREIGN KEY (id_contact) REFERENCES "._DB_PREFIX_."contact(id_contact) ON DELETE CASCADE ON UPDATE CASCADE,
 	type varchar(20) NOT NULL,
 	value varchar(30) NOT NULL
 ) ENGINE=InnoDB
@@ -97,7 +97,9 @@ $err = false;
 foreach ($QUERIES as $query){
    if(!mysql_query($query,$con)){
       $err = true;
+	  echo "<pre>";
       echo mysql_error();
+	  echo "</pre>";
    }
 }
 mysql_close($con);

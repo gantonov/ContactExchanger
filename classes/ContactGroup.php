@@ -41,7 +41,36 @@ class ContactGroup extends ObjectModel{
 		$db->executeQuery("COMMIT");
 		return true;
 	}
-	
+	public static function deleteContactGroup($id_group)
+	{
+		$id_group = mysql_real_escape_string($id_group);
+		$query = "DELETE FROM "._DB_PREFIX_."contact_group 
+			WHERE id_contact_group = $id_group";
+		$res = DBComutator::getInstance()->executeQuery($query);
+
+		if (!$res)
+		{
+			return false;
+		}
+		
+		return true;
+		
+	}
+	public static function getGroupPermissions($id_group, $id_user)
+	{
+		$id_group = mysql_real_escape_string($id_group);
+		$id_user = mysql_real_escape_string($id_user);
+		
+		$query = "SELECT permissions
+					FROM "._DB_PREFIX_."shareing 
+					WHERE id_user=$id_user AND id_contact_group=$id_group
+					LIMIT 1";
+		$result = DBComutator::getInstance()->executeQuery($query);
+		if (!$row = mysql_fetch_assoc($result))
+			return false;
+		
+		return self::getPermissions($row['permissions']);
+	}
 	public static function getPermissions($permissions_flags)
 	{
 		$permissions = array();

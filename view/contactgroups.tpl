@@ -28,7 +28,7 @@
 				<td class="small">{$contact_group.permissions.flags}</td>
 				<td class="small">
 					{if $contact_group.permissions.add}
-						<a href="#" class="icon add_contact">Add</a>
+						<a href="index.php?controller=Contact&group_id={$contact_group.id}"" class="icon add_contact">Add</a>
 					{else}
 						<div class="icon forbidden">Forbidden</div>
 					{/if}
@@ -49,7 +49,7 @@
 				</td>
 				<td class="small">
 					{if $contact_group.permissions.delete}
-						<a href="#" class="icon delete">Delete</a>
+						<button  class="icon delete" data-group="{$contact_group.id}">Delete</button>
 					{else}
 						<div class="icon forbidden">Forbidden</div>
 					{/if}

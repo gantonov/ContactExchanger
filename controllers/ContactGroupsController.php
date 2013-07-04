@@ -27,6 +27,32 @@ class ContactGroupsController extends Controller
 				echo "fail";
 		}
 		
+		if ($servce == 'delete_group')
+		{
+			if (empty($_GET['group_id']))
+			{
+				echo "No group id!";
+				return;
+			}
+			
+			if (!$permissions = ContactGroup::getGroupPermissions($_GET['group_id'], $_SESSION['user_id']))
+			{
+				echo "Group not shared with user";
+				return;
+			}
+			
+			if (!$permissions['delete'])
+			{
+				echo "Deleting not permited!";
+				return;
+			}
+			
+			if (ContactGroup::deleteContactGroup($_GET['group_id']))
+				echo "success";
+			else
+				echo "fail";
+		}
+		
 	}
 	
 	public function checkAccess()
@@ -36,7 +62,7 @@ class ContactGroupsController extends Controller
 	
 	protected function loadJS()
 	{
-		$this->sctipts[] ="js/addContacGroup.js";
+		$this->sctipts[] ="js/ContactGroups.js";
 		parent::loadJS();
 	}
 }

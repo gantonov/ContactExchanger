@@ -34,6 +34,27 @@ $(document).ready(function(){
 			);
 		}
 	});
+	
+	$(".delete").click(function(event) {
+		event.preventDefault();
+		
+		var id = $(this).data('group');
+		if (typeof id != 'undefined')
+		{
+			$.get(base_url + "?controller=ContactGroups&service=delete_group&group_id="+id,
+				function(data) {
+					if (data == "success")
+					{
+						alert (data);
+					}
+					else
+					{
+						alert (data);
+					}
+				}
+			);
+		}
+	});
 });
 
 function closePopups(b)

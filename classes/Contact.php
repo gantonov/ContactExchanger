@@ -67,14 +67,32 @@ class Contact extends ObjectModel{
 	{
 		$db = new DBComutator();
 		$db->executeQuery("BEGIN");
-		
-		$query = "INSERT INTO "._DB_PREFIX_."contact
-			(first_name, last_name)
-			VALUES ('$this->first_name', '$this->last_name') ";
-		if (!$this->id = $db->executeInsertQuery($query))
+		if (empty($this->id))
 		{
-			$db->executeQuery ("ROLLBACK");
-			return false;
+			$query = "INSERT INTO "._DB_PREFIX_."contact
+				(first_name, last_name)
+				VALUES ('$this->first_name', '$this->last_name') ";
+			if (!$this->id = $db->executeInsertQuery($query))
+			{
+				$db->executeQuery ("ROLLBACK");
+				return false;
+			}
+		}
+		else
+		{
+			$db->executeQuery("DELETE FROM "._DB_PREFIX_."phone_number WHERE id_contact=".$this->id);
+			$db->executeQuery("DELETE FROM "._DB_PREFIX_."email WHERE id_contact=".$this->id);
+			$db->executeQuery("DELETE FROM "._DB_PREFIX_."im WHERE id_contact=".$this->id);
+			$db->executeQuery("DELETE FROM "._DB_PREFIX_."contact_in_group WHERE id_contact=".$this->id); //TODO Restrictions
+			
+			$query = "UPDATE "._DB_PREFIX_."contact
+				SET first_name='$this->first_name', last_name='$this->last_name'
+				WHERE id_contact=$this->id";
+			if (!$db->executeQuery($query))
+			{
+				$db->executeQuery ("ROLLBACK");
+				return false;
+			}
 		}
 		
 		//insert phone numbers
@@ -89,6 +107,7 @@ class Contact extends ObjectModel{
 			$query = substr($query,0,-2); //remove ", "
 			if (!$db->executeInsertQuery($query))
 			{
+				echo mysql_error();
 				$db->executeQuery ("ROLLBACK");
 				return false;
 			}

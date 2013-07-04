@@ -36,7 +36,9 @@ class DBComutator {
     public function executeQuery($query)
     {
         if ($result = mysql_query($query,self::$connection)) 
+		{		
 			return $result;
+		}
         else
         {
 	    	error_log($_SERVER['SCRIPT_FILENAME'].' - '.mysql_error());

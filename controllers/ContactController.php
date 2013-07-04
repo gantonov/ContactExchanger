@@ -17,9 +17,11 @@ class ContactController extends Controller
 		$user = new User($_SESSION['user_id']);
 		
 		foreach ($contact->contact_groups as $id_group) 
-		{
 			$user->contact_groups[$id_group]['selected'] = true;
-		}
+		
+		if (isset($_GET['group_id']) && isset($user->contact_groups[$_GET['group_id']]))
+			$user->contact_groups[$_GET['group_id']]['selected'] = true;
+		
 		$smarty->assign('contact_groups',$user->contact_groups);	
 		
 		$smarty->display('contact.tpl');
