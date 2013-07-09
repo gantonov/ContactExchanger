@@ -65,4 +65,20 @@ class User extends ObjectModel{
 			session_destroy();
 		}
 	}
+	
+	public static function findUserByEmail($email)
+	{
+		$query = "SELECT `id_user` 
+					FROM "._DB_PREFIX_."user 
+					WHERE `email`='$email'
+					LIMIT 1";
+		$result = DBComutator::getInstance()->executeQuery($query);
+		if (mysql_num_rows($result) > 0)
+		{
+			$row = mysql_fetch_assoc($result);
+			return $row['id_user'];
+		}
+		else
+			return false;
+	}
 }

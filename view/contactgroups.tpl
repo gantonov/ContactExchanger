@@ -20,7 +20,7 @@
 		</thead>
 		<tbody>
 		{foreach from=$contact_groups item=contact_group}
-			<tr>
+			<tr data-group_id="{$contact_group.id}" data-group_name="{$contact_group.name}">
 				<td class="small">{$contact_group.id}</td>
 				<td>
 					<a href="index.php?controller=ContactGroup&group_id={$contact_group.id}">{$contact_group.name}</a>
@@ -35,7 +35,7 @@
 				</td>
 				<td class="small">
 					{if $contact_group.permissions.edit}
-						<a href="index.php?controller=ContactGroup&group_id={$contact_group.id}" class="icon edit">Edit</a>
+						<button class="edit icon" >Edit</button>
 					{else}
 						<div class="icon forbidden">Forbidden</div>
 					{/if}
@@ -49,7 +49,7 @@
 				</td>
 				<td class="small">
 					{if $contact_group.permissions.delete}
-						<button  class="icon delete" data-group="{$contact_group.id}">Delete</button>
+						<button  class="icon delete">Delete</button>
 					{else}
 						<div class="icon forbidden">Forbidden</div>
 					{/if}
@@ -65,9 +65,59 @@
 		<form>
 			<fieldset>
 				<legend>Add new group</legend>
-				<label for="group_name">Group name</label>
-				<input type="text" name="group_name" id="group_name" />
+				<label for="group_name_add">Group name</label>
+				<input type="text" name="group_name" id="group_name_add" placeholder="Group name" required/>
 				<input type="submit" name="add_group" id="add_group" value="Add" class="button"/>
+			</fieldset>
+		</form>
+	</section>
+	
+	<section id="edit_group_popup" class="popup hidden">
+		<form>
+			<fieldset>
+				<legend>Edit group</legend>
+				<label for="group_name_edit">Group name</label>
+				<input type="hidden" name="group_id" id="group_id_edit"/>
+				<input type="text" name="group_name" id="group_name_edit" placeholder="Group name" required/>
+				<input type="submit" name="edit_group" id="edit_group" value="Edit" class="button"/>
+			</fieldset>
+		</form>
+	</section>
+	
+	<section id="share_group_popup" class="popup hidden">
+		<form>
+			<fieldset>
+				<legend>Share group <span id="shared_group_name"></span></legend>
+				<input type="hidden" name="group_id" id="shareing_group_id" required/>
+				<label for="share_with">User email</label>
+				<input type="email" name="share_with" id="share_with" placeholder="Email" required/>
+				<ul>
+					<li>
+						<label for="share_with">Permissions</label>
+						<input type="number" name="user_permissions" id="shareing_user_permissions" value="0" required/>
+					</li>
+					<li>
+						<input class="premission" type="checkbox" id="can_add" />
+						<label for="can_add">Add</label>
+					</li>
+					<li>
+						<input class="premission" type="checkbox" id="can_edit" />
+						<label for="can_edit">Edit</label>
+					</li>
+					<li>
+						<input class="premission" type="checkbox" id="can_see_others" />
+						<label for="can_see_others">See other users</label>
+					</li>
+					<li>
+						<input class="premission" type="checkbox" id="can_share" />
+						<label for="can_share">Share</label>
+					</li>
+					<li>
+						<input class="premission" type="checkbox" id="can_delete" />
+						<label for="can_delete">Delete</label>
+					</li>
+				</ul>
+				<input type="submit" name="share" id="share" value="Share" class="button"/>
 			</fieldset>
 		</form>
 	</section>

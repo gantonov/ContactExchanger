@@ -39,7 +39,8 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		cursor: default;
 		padding-left: 30px;
 	}
-	input[type="text"], input[type="password"]{
+	input[type="text"], input[type="password"],
+	input[type="email"], input[type="number"]{
 		background-color: #FFFFFF;
 		border: 1px solid #E1E1E1;
 		border-radius: 4px 4px 4px 4px;
@@ -225,6 +226,7 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 	.icon{
 		background-color: transparent;
 		border: none;
+		cursor: pointer;
 		display: block;
 		height: 20px;
 		margin: 0 auto;
@@ -238,9 +240,14 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 	.delete{background-image: url('../img/bin closed.png')}
 	.forbidden{background-image: url('../img/lock.png')}
 	
-	ul#contact_groups { list-style: none }
-	ul#contact_groups input[type="checkbox"],
-	ul#contact_groups label { display:inline }
+	form ul { list-style: none }
+	form ul input[type="checkbox"],
+	form ul label { display:inline }
+	
+	#shareing_user_permissions{
+		display: inline-block;
+		width: 2em;
+	}
 }
 @media print
 {

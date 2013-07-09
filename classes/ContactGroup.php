@@ -74,6 +74,20 @@ class ContactGroup extends ObjectModel{
 		return true;
 	}
 	/**
+	 * Updates the DB
+	 * @return boolean 
+	 */
+	public function update()
+	{
+		$query = "UPDATE "._DB_PREFIX_."contact_group 
+				SET name = '$this->name' 
+				WHERE id_contact_group =$this->id";
+		if(DBComutator::getInstance()->executeQuery($query))
+			return true;
+		else
+			return false;
+	}
+	/**
 	 * Deletes a contact group
 	 * @param int $id_group
 	 * @return boolean 
@@ -89,6 +103,22 @@ class ContactGroup extends ObjectModel{
 			return false;
 		
 		return true;	
+	}
+	/**
+	 * Shares group with user
+	 * @param int $id_group
+	 * @param int $id_user
+	 * @param int $permissions 
+	 */
+	public static function shareContactGroup($id_group,$id_user,$permissions)
+	{
+		$query = "INSERT INTO "._DB_PREFIX_."shareing (id_user, id_contact_group, permissions) 
+			VALUES ($id_user, $id_group, $permissions)";
+		if (DBComutator::getInstance()->executeQuery($query))
+			return true;
+		else
+			return false;
+		
 	}
 	/**
 	 * Returns an array of the user permissions
