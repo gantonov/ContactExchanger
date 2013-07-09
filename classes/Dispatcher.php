@@ -22,7 +22,7 @@ class Dispatcher{
 			}
 			else
 			{
-				$controller = 'ContactGroupsController';
+				$controller = 'NotFoundController';
 			}
 		}
 		
