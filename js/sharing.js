@@ -97,23 +97,15 @@ $(document).ready(function(){
 		var email = $('#share_with').val();
 		var permissions = $('#shareing_user_permissions').val();
 		
-		if (email != '')
-		{
-			$.post(base_url + "?controller=ContactGroups&service=share_group", 
-					{'group_id':id,'share_with':email, 'permissions':permissions},
-				function(data) {
-					if (data == "success")
-					{
-						alert (data);
-						closePopups($('.popup_background'));
-						// TODO
-					}
-					else
-					{
-						alert (data);
-					}
-				}
-			);
-		}
+		$.post(base_url + "?controller=ContactGroups&service=share_group", 
+				{'group_id':id,'share_with':email, 'permissions':permissions},
+			function(data) {
+				alert (data);
+				closePopups($('.popup_background'));
+				// TODO
+			}
+		).fail(function (jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+		});
 	});
 });
