@@ -81,7 +81,7 @@ class ContactGroupsController extends Controller
 					elseif (ContactGroup::shareContactGroup($id_group, $id_user, $permissions))
 						header("HTTP/1.0 200 OK");
 					else
-						header("HTTP/1.0 500 Server error");
+						header("HTTP/1.0 404 This contact group alredy shared with $email");
 				}
 				break;
 			default:

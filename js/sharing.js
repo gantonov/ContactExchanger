@@ -100,7 +100,6 @@ $(document).ready(function(){
 		$.post(base_url + "?controller=ContactGroups&service=share_group", 
 				{'group_id':id,'share_with':email, 'permissions':permissions},
 			function(data) {
-				alert (data);
 				closePopups($('.popup_background'));
 				// TODO
 			}
