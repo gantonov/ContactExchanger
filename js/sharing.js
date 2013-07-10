@@ -101,7 +101,7 @@ $(document).ready(function(){
 				{'group_id':id,'share_with':email, 'permissions':permissions},
 			function(data) {
 				closePopups($('.popup_background'));
-				// TODO
+				alert("Group shared successfully")
 			}
 		).fail(function (jqXHR, textStatus, errorThrown){
 				alert(errorThrown);

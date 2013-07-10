@@ -16,7 +16,7 @@ abstract class Controller {
 		}
 		else
 		{
-			header("Location: index.php?controller=LogIn");
+			header("HTTP/1.0 403 Forbidden");
 			exit();
 		}
 	}
@@ -38,7 +38,15 @@ abstract class Controller {
 	 * Checks if the user has access to the page.
 	 * @return boolean 
 	 */
-	abstract public function checkAccess();
+	public function checkAccess()
+	{
+		if (empty($_SESSION['user_id']))
+		{
+			header("Location: index.php?controller=LogIn");
+			exit();
+		}
+		return true;
+	}
 	
 	/**
 	 * Loads all required js files.

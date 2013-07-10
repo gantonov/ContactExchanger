@@ -89,11 +89,6 @@ class ContactGroupsController extends Controller
 		}
 	}
 	
-	public function checkAccess()
-	{
-		return !empty($_SESSION['user_id']);
-	}
-	
 	protected function loadJS()
 	{
 		$this->sctipts[] ="js/contactGroups.js";

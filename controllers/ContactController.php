@@ -27,7 +27,8 @@ class ContactController extends Controller
 		$smarty->display('contact.tpl');
 	}
 	
-	public function runService($servce) {
+	public function runService($servce) 
+	{
 		parent::runService($servce);
 		if ($servce == 'save')
 		{
@@ -113,11 +114,7 @@ class ContactController extends Controller
 		}
 	}
 	
-	//TODO
-	public function checkAccess()
-	{
-		return !empty($_SESSION['user_id']);
-	}
+	//TODO public function checkAccess()
 	
 	protected function loadJS()
 	{
