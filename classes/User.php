@@ -41,11 +41,24 @@ class User extends ObjectModel{
 		return DBComutator::getInstance()->executeInsertQuery($query);
 	}
 	
-	public function logIn()
+	public static function signUp($email, $name, $password)
 	{
+		$user = new User();
+		$user->set('name',$name);
+		$user->set('email',$email);
+		$user->set('password',$password);
+		if (!$id = $user->save())
+			return false;
+		$_SESSION['user_id'] = $id;
+		return true;
+	}
+	public static function logIn($email, $password)
+	{
+		$email = mysql_real_escape_string($email);
+		$password = mysql_real_escape_string($password);
 		$query = "SELECT `id_user` 
 					FROM "._DB_PREFIX_."user 
-					WHERE `email`='$this->email' AND `password`=SHA1('$this->password') 
+					WHERE `email`='$email' AND `password`=SHA1('$password') 
 					LIMIT 1";
 		$result = DBComutator::getInstance()->executeQuery($query);
 		if (mysql_num_rows($result) > 0)

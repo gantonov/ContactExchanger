@@ -1,6 +1,10 @@
 <?php
 class LogInController extends Controller
 {	
+	public function __construct() 
+	{
+		parent::__construct();
+	}
 	public function init()
 	{
 		if (!empty($_GET['logout']))
@@ -18,32 +22,32 @@ class LogInController extends Controller
 	
 	public function runService($servce) {
 		parent::runService($servce);
-		if ($servce == 'sign_up')
-		{
-			$user = new User();
-			$user->set('email', $_POST['email']);
-			$user->set('name', $_POST['name']);
-			$user->set('password', $_POST['password']);
-			if ($user_id = $user->save())
-			{
-				echo "success";
-				$_SESSION['user_id'] = $user_id;
-			}
-			else
-				echo "fail";
+		switch ($servce) {
+			case 'sign_up':
+				if (empty($_POST['email']))
+					header("HTTP/1.0 404 Email is empty");
+				elseif (empty($_POST['name']))
+					header("HTTP/1.0 404 Name is empty");
+				elseif (empty($_POST['password']))
+					header("HTTP/1.0 404 Password is empty");
+				elseif (User::signUp($_POST['email'], $_POST['name'], $_POST['password']))
+					header("HTTP/1.0 200 OK");
+				else
+					header("HTTP/1.0 403 User Alredy Exists");
+				break;
+			case 'log_in':
+				if (User::logIn($_POST['email'], $_POST['password']))
+				{
+					header("HTTP/1.0 200 OK");
+				}
+				else
+					header("HTTP/1.0 403 Wrong email or password");
+				break;
+			default:
+				header("HTTP/1.0 400 Bad Request");
+				break;
 		}
-		if ($servce == 'log_in')
-		{
-			$user = new User();
-			$user->set('email', $_POST['email']);
-			$user->set('password', $_POST['password']);
-			if ($user_id = $user->logIn())
-			{
-				echo "success";
-			}
-			else
-				echo "fail";
-		}
+		
 	}
 	public function checkAccess()
 	{
