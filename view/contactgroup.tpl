@@ -25,11 +25,7 @@
 			<tr>
 				<td class="small">{$contact.id}</td>
 				<td>
-					{if $user_permissions.edit}
-						<a href="index.php?controller=Contact&id={$contact.id}">{$contact.first_name} {$contact.last_name}</a>
-					{else}
-						<span>{$contact.first_name} {$contact.last_name}</span>
-					{/if}
+					<a href="index.php?controller=Contact&id={$contact.id}">{$contact.first_name} {$contact.last_name}</a>
 				</td>
 				<td class="small">
 					{if $user_permissions.edit}

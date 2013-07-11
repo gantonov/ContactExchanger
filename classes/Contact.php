@@ -198,4 +198,31 @@ class Contact extends ObjectModel{
 		
 		return true;
 	}
+	
+	/**
+	 * Returns user permissions over a contact
+	 * @param int $id_user
+	 * @param int $id_contact
+	 * @return int|false user permission flags 
+	 */
+	public static function getUserPermissions($id_user, $id_contact)
+	{
+		$id_user = mysql_real_escape_string($id_user);
+		$id_contact = mysql_real_escape_string($id_contact);
+		
+		$query = "SELECT s.permissions
+					FROM "._DB_PREFIX_."contact_in_group AS cg
+					LEFT JOIN "._DB_PREFIX_."shareing AS s ON s.id_contact_group = cg.id_contact_group
+					WHERE cg.id_contact =$id_contact AND s.id_user =$id_user";
+		if (!$result = DBComutator::getInstance()->executeQuery($query))
+			return false;
+		if ( mysql_affected_rows() == 0)
+			return false;
+		$permissions = 0;
+		while ($row = mysql_fetch_assoc($result))
+		{
+			$permissions = $permissions | $row['permissions'];
+		}
+		 return Tools::getPermissionsArray($permissions);
+	}
 }

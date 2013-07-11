@@ -23,7 +23,7 @@ class User extends ObjectModel{
 			while ($row = mysql_fetch_assoc($result))
 			{
 				$contact_group = array('id' => $row['id_contact_group'], 'name' => $row['name'], 
-					'permissions' => ContactGroup::getPermissions($row['permissions']));
+					'permissions' => Tools::getPermissionsArray($row['permissions']));
 				$this->contact_groups[$row['id_contact_group']] = $contact_group;
 			}
 		}

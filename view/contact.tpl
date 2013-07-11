@@ -21,7 +21,7 @@
 		{foreach from=$telephones item=telephone}
 			<input class="left_field" type="text" name="telephone_type[]" id="telephone_type" placeholder="Type (Mobile/Office/Home)" value="{$telephone.type}"/>
 			<input class="right_field" type="text" name="telephone[]" id="telephone" placeholder="Telephone number" value="{$telephone.number}"/>
-			<input type="radio" name="default_telephone" value="1" class="default_radio"{if $telephone.preferable} checked="checked"{/if}/>
+			<input type="radio" name="default_telephone" value="{$telephone@iteration}" class="default_radio"{if $telephone.preferable} checked="checked"{/if}/>
 		{foreachelse}
 			<input class="left_field" type="text" name="telephone_type[]" id="telephone_type" placeholder="Type (Mobile/Office/Home)" />
 			<input class="right_field" type="text" name="telephone[]" id="telephone" placeholder="Telephone number" />
@@ -34,7 +34,7 @@
 		{foreach from=$emails item=email}
 			<input class="left_field" type="text" name="email_type[]" id="email_type" placeholder="Type" value="{$email.type}"/>
 			<input class="right_field" type="text" name="email[]" id="email" placeholder="Email" value="{$email.email}"/>
-			<input type="radio" name="default_email" value="1" class="default_radio"{if $email.preferable} checked="checked"{/if}/>
+			<input type="radio" name="default_email" value="{$email@iteration}" class="default_radio"{if $email.preferable} checked="checked"{/if}/>
 		{foreachelse}
 			<input class="left_field" type="text" name="email_type[]" id="email_type" placeholder="Type" />
 			<input class="right_field" type="text" name="email[]" id="email" placeholder="Email" />
