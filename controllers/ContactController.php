@@ -36,6 +36,7 @@ class ContactController extends Controller
 			
 			$contact_id = (empty($contact_data['contact_id']))?null:$contact_data['contact_id'];
 			$contact = new Contact();
+			
 			$contact->set('id', $contact_id);
 			$contact->set('first_name', $contact_data['first_name']);
 			$contact->set('last_name', $contact_data['last_name']);
@@ -95,22 +96,24 @@ class ContactController extends Controller
 				}
 				$contact->set('contact_groups', $contact_groups);
 			}
-			if ($contact->save())
-				echo "success";
+			if (empty($contact->first_name))
+				header("HTTP/1.0 404 First name is empty");
+			elseif (empty($contact->telephones) && empty($contact->emails) && empty($contact->ims))
+				header("HTTP/1.0 404 Contact details are empty");
+			elseif ($contact->save())
+				header("HTTP/1.0 200 OK");
+			else
+				header("HTTP/1.0 500 Server Error");
 		}
 		
 		if ($servce == 'delete')
 		{
 			if (empty($_GET['contact_id']))
-			{
-				echo "No contact id!";
-				return;
-			}
-			
-			if (Contact::deleteContact($_GET['contact_id']))
-				echo "success";
+				header("HTTP/1.0 404 Contact id is empty");
+			elseif (Contact::deleteContact($_GET['contact_id']))
+				header("HTTP/1.0 200 OK");
 			else
-				echo "fail";
+				header("HTTP/1.0 500 Server Error");
 		}
 	}
 	

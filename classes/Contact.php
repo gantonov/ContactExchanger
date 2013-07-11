@@ -193,9 +193,7 @@ class Contact extends ObjectModel{
 		$id_contact = mysql_real_escape_string($id_contact);
 		$query = "DELETE FROM "._DB_PREFIX_."contact 
 			WHERE id_contact = $id_contact";
-		$res = DBComutator::getInstance()->executeQuery($query);
-
-		if (!$res)
+		if (!DBComutator::getInstance()->executeQuery($query))
 			return false;
 		
 		return true;

@@ -19,16 +19,11 @@ $(document).ready(function(){
 		formData = $(this).serialize();
 		$.post(base_url + "?controller=Contact&service=save", {'data':formData},
 			function(data) {
-				if (data == "success")
-				{
-					alert (data);
-				}
-				else
-				{
-					alert (data);
-				}
+				window.history.back();
 			}
-		);
+		).fail(function (jqXHR, textStatus, errorThrown){
+				alert(errorThrown);
+		});
 	});
 });
 
