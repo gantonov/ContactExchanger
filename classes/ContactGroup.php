@@ -97,11 +97,18 @@ class ContactGroup extends ObjectModel{
 		$id_group = mysql_real_escape_string($id_group);
 		$query = "DELETE FROM "._DB_PREFIX_."contact_group 
 			WHERE id_contact_group = $id_group";
-		$res = DBComutator::getInstance()->executeQuery($query);
-
-		if (!$res)
+		if (!DBComutator::getInstance()->executeQuery($query))
 			return false;
-		
+		$query = "SELECT c.id_contact FROM ce_contact AS c
+			LEFT JOIN ce_contact_in_group AS cg ON cg.id_contact = c.id_contact
+			WHERE cg.id_contact_group IS NULL";
+		if ($result = DBComutator::getInstance()->executeQuery($query))
+		{
+			while ($row = mysql_fetch_assoc($result))
+			{
+				DBComutator::getInstance()->executeQuery("DELETE FROM "._DB_PREFIX_."contact WHERE id_contact=".$row['id_contact']);
+			}
+		}
 		return true;	
 	}
 	/**
