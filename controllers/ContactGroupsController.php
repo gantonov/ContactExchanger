@@ -24,7 +24,10 @@ class ContactGroupsController extends Controller
 					$group->set('name',$_POST['group_name']);
 					$group->set('shareings', $sharings);
 					if ($group->save())
+					{
+						echo "{'contact_group_id':$group->id}";
 						header("HTTP/1.0 200 OK");
+					}
 					else
 						header("HTTP/1.0 500 Server error");
 				}

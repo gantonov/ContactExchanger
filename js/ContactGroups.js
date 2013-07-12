@@ -1,7 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function(){	
 	$("#add_group_btn").click(function() {
 		$('#add_group_popup').fadeIn('medium');
 		$('#add_group_popup').closest('.popup_background').fadeIn('slow');
+		$('#group_name_add').focus();
 	});
 	
 	$('.popup').click(function(event) {
@@ -12,7 +13,7 @@ $(document).ready(function(){
 		closePopups($(this));
 	});
 	
-	$(".icon.edit").click(function(event) {
+	$(".icon.edit").live('click',function(event) {
 		event.preventDefault();
 		
 		var id = $(this).closest('tr').data('group_id');
@@ -20,9 +21,9 @@ $(document).ready(function(){
 		
 		$("#group_id_edit").val(id);
 		$("#group_name_edit").val(name);
-		
 		$('#edit_group_popup').fadeIn('medium');
 		$('#edit_group_popup').closest('.popup_background').fadeIn('slow');
+		$("#group_name_edit").focus();
 	});
 	
 	$("#add_group_popup form").submit(function(event) {
@@ -30,10 +31,26 @@ $(document).ready(function(){
 		
 		var name = $('#group_name_add').val();
 		$.post(base_url + "?controller=ContactGroups&service=add_group", {'group_name':name},
-			function() {
+			function(data) {
+				var group = eval('('+data+')');
+				
 				closePopups($('.popup_background'));
-				// TODO - add to the list
-				$('#group_name').val("")
+				$('#group_name_add').val("");
+				
+				$('#contact_groups_table')
+					.append('<tr data-group_name="' + name + '" data-group_id="' + group.contact_group_id + '">' +
+								'<td class="small">' + group.contact_group_id + '</td>' +
+								'<td>' +
+									'<a href="index.php?controller=ContactGroup&amp;group_id=' + group.contact_group_id + '">' +name + '</a>' +
+								'</td>' +
+								'<td class="small">31</td>' +
+								'<td class="small">' +
+										'<a class="icon add_contact" href="index.php?controller=Contact&amp;group_id=' + group.contact_group_id + '">Add</a>' +
+								'</td>' +
+								'<td class="small"><button class="edit icon">Edit</button></td>' +
+								'<td class="small"><a class="icon share" href="#">Share</a></td>' +
+								'<td class="small"><button class="icon delete">Delete</button></td>' +
+							'</tr>');
 			}
 		).fail(function (jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -48,20 +65,24 @@ $(document).ready(function(){
 		$.post(base_url + "?controller=ContactGroups&service=edit_group", {'group_id':id,'group_name':name},
 			function(data) {
 				closePopups($('.popup_background'));
-				// TODO - add to the list
-				$('#group_name').val("")
+				var row = $('tr[data-group_id="'+ id + '"]');
+				row.data('group_name', name);
+				row.find('td[data-type="group_name"] a').html(name);
+				$('#group_name_edit').val("")
 			}
 		).fail(function (jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
 		});
 	});
-	$(".delete").click(function(event) {
+	
+	$(".delete").live('click',function(event) {
 		event.preventDefault();
+		var table_row = $(this).closest('tr');	
 		
 		var id = $(this).closest('tr').data('group_id');
 		$.get(base_url + "?controller=ContactGroups&service=delete_group&group_id="+id,
 			function(data) {
-				alert (data);
+				table_row.remove();
 			}
 		).fail(function (jqXHR, textStatus, errorThrown){
 				alert(errorThrown);

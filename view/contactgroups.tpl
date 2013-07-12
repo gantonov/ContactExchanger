@@ -6,7 +6,7 @@
 {block name=content}
 <section id="page">
 	<button id="add_group_btn" class="button">Add Group</button>
-	<table{if !$contact_groups} class="hidden"{/if}>
+	<table{if !$contact_groups} class="hidden"{/if} id="contact_groups_table">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -22,7 +22,7 @@
 		{foreach from=$contact_groups item=contact_group}
 			<tr data-group_id="{$contact_group.id}" data-group_name="{$contact_group.name}">
 				<td class="small">{$contact_group.id}</td>
-				<td>
+				<td data-type="group_name">
 					<a href="index.php?controller=ContactGroup&group_id={$contact_group.id}">{$contact_group.name}</a>
 				</td>
 				<td class="small">{$contact_group.permissions.flags}</td>

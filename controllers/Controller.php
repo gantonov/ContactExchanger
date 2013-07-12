@@ -3,7 +3,8 @@ abstract class Controller {
 	protected $sctipts;
 	public function __construct()
 	{
-		$this->sctipts = array("jquery" => "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js");
+		//$this->sctipts = array("jquery" => "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js");
+		$this->sctipts = array("jquery" => "js/jquery-1.8.2.min.js");
 	}
 	/**
 	 * Runs the controller 
