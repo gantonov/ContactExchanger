@@ -72,9 +72,15 @@ header, nav, article, section, footer, hgroup, aside { display: block }
         width: 0;
     }
     .right { float:right }
-    .left{ float:left }
-    .hidden{ display:none }
-	
+    .left { float:left }
+    .hidden { display:none }
+	.warning {
+		background: url("../img/error.png") no-repeat scroll 6px center #FFF6D5;
+		border: 1px solid #F0C040;
+		border-radius: 4px 4px 4px 4px;
+		margin: 1ex 15px;
+		padding: 2ex 1em 2ex 50px;
+	}
 	body { 
 		background:#efefef url("../img/noise.png") repeat;
 		font-size: 13px;

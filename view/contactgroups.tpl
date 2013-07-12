@@ -58,7 +58,7 @@
 		{/foreach}
 		</tbody>
 	</table>
-	<p class="warning{if $contact_groups} hidden{/if}">There are no contact groups shared with you. You can add cotact groups by clicking the "Add Groups" button on top.</p>
+	<p class="warning{if $contact_groups} hidden{/if}"id="empty_table_warning">There are no contact groups shared with you. You can add cotact groups by clicking the "Add Group" button on top.</p>
 </section>
 <div class="popup_background">
 	<section id="add_group_popup" class="popup hidden">

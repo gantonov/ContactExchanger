@@ -51,6 +51,7 @@ $(document).ready(function(){
 								'<td class="small"><a class="icon share" href="#">Share</a></td>' +
 								'<td class="small"><button class="icon delete">Delete</button></td>' +
 							'</tr>');
+				emptyTableWarning();
 			}
 		).fail(function (jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -83,6 +84,7 @@ $(document).ready(function(){
 		$.get(base_url + "?controller=ContactGroups&service=delete_group&group_id="+id,
 			function(data) {
 				table_row.remove();
+				emptyTableWarning();
 			}
 		).fail(function (jqXHR, textStatus, errorThrown){
 				alert(errorThrown);
@@ -93,4 +95,15 @@ $(document).ready(function(){
 function closePopups(b){
 		b.children().fadeOut('medium');
 		b.fadeOut('slow');
+}
+
+function emptyTableWarning(){
+	if ($('#contact_groups_table tbody tr').length > 0){
+		$('#empty_table_warning').fadeOut();
+		$('#contact_groups_table').fadeIn();
+	}
+	else{
+		$('#empty_table_warning').fadeIn();
+		$('#contact_groups_table').fadeOut();
+	}
 }
