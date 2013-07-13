@@ -14,6 +14,8 @@ class ContactGroupController extends Controller
 		$smarty->assign('group_name',$this->contact_group->name);
 		$smarty->assign('contacts',$this->contact_group->contacts);
 		$smarty->assign('user_permissions',$this->contact_group->user_permissions);
+		if ($this->contact_group->user_permissions['see_others'])
+			$smarty->assign('sharings',$this->contact_group->sharings);
 		$smarty->display('contactgroup.tpl');
 	}
 	

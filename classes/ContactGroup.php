@@ -3,7 +3,7 @@ class ContactGroup extends ObjectModel{
 	public $id;
 	public $name;
 	public $contacts;
-	public $shareings;
+	public $sharings;
 	public $user_permissions;
 	
 	/**
@@ -34,9 +34,26 @@ class ContactGroup extends ObjectModel{
 					WHERE id_contact_group=$this->id";
 			$result = $db->executeQuery($query);
 			while ($row = mysql_fetch_assoc($result))
+			{
 				$this->contacts[] = array('id' => $row['id_contact'], 
 					'first_name' => $row['first_name'], 
 					'last_name' => $row['last_name']);
+			}
+			
+			$query ="SELECT u.id_user, u.name, u.email, s.permissions
+						FROM "._DB_PREFIX_."shareing AS s
+						LEFT JOIN "._DB_PREFIX_."user AS u ON s.id_user = u.id_user
+						WHERE s.id_contact_group =$this->id";
+			$result = $db->executeQuery($query);
+			$this->sharings = array();
+			while ($row = mysql_fetch_assoc($result))
+			{
+				$this->sharings[] = array('user_id' => $row['id_user'],
+						'user_name' => $row['name'],
+						'user_email' => $row['email'],
+						'user_permissions' => Tools::getPermissionsArray($row['permissions']));
+			}
+			
 			unset($db);
 			$this->user_permissions = self::getGroupPermissions($this->id, $_SESSION['user_id']);
 		}
@@ -60,7 +77,7 @@ class ContactGroup extends ObjectModel{
 		
 		$query = "INSERT INTO "._DB_PREFIX_."shareing (id_user, id_contact_group, permissions) VALUES";
 
-		foreach ($this->shareings as $shareing) {
+		foreach ($this->sharings as $shareing) {
 			$query .= " ({$shareing['id_user']},$this->id,{$shareing['premissions']})";
 		}
 		

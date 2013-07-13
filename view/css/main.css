@@ -193,7 +193,12 @@ header, nav, article, section, footer, hgroup, aside { display: block }
 		text-align: center;
 		padding: 0;
 	}
-	
+	table caption{
+		text-align: left;
+		font-size: 1.2em;
+		font-weight: bold;
+		padding-left: 1em;
+	}
 	#page fieldset{
 		padding: 25px;
 	}
